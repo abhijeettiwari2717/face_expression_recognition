@@ -7,17 +7,18 @@ import numpy as np
 import tensorflow
 import pkg_resources
 
-face_classifier=cv2.CascadeClassifier('C:/Users/ABHIJEET/Desktop/major/Facial-Expressions-Recognition-master/Facial-Expressions-Recognition-master/haarcascade_frontalface_default.xml')
-classifier=load_model(r'C:\Users\ABHIJEET\Desktop\major\Facial-Expressions-Recognition-master\Facial-Expressions-Recognition-master\Emotion_little_vgg.h5')
+#complete path of your both the files.
+face_classifier=cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+classifier=load_model('Emotion_little_vgg.h5')
 
 class_labels = ['Angry','Happy','Neutral','Sad','Surprise']
 
 cap = cv2.VideoCapture(0)
 
 
-
+# Get a single frame of video
 while True:
-    # Grab a single frame of video
+    
     ret, frame = cap.read()
     labels = []
     gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
@@ -27,15 +28,15 @@ while True:
         cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
         roi_gray = gray[y:y+h,x:x+w]
         roi_gray = cv2.resize(roi_gray,(48,48),interpolation=cv2.INTER_AREA)
-    # rect,face,image = face_detector(frame)
+        
 
-
+        #rect,face,image = face_detector(frame)
         if np.sum([roi_gray])!=0:
             roi = roi_gray.astype('float')/255.0
             roi = img_to_array(roi)
             roi = np.expand_dims(roi,axis=0)
 
-        # make a prediction on the ROI, then lookup the class
+        #make prediction on the ROI, then lookup the class
 
             preds = classifier.predict(roi)[0]
             label=class_labels[preds.argmax()]
