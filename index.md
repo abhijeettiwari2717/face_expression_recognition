@@ -34,8 +34,6 @@ class_labels = ['Angry','Happy','Neutral','Sad','Surprise']
 
 cap = cv2.VideoCapture(0)
 
-
-# Get a single frame of video
 while True:
     
     ret, frame = cap.read()
@@ -69,8 +67,7 @@ while True:
 
 cap.release()
 cv2.destroyAllWindows()
-© 2020` text
+© 2020`
 
-```
 For more information and downloading the files see here: [Facial_Expression_Recognition](https://github.com/abhijeettiwari2717/face_expression_recognition)
 See my Portfolio: [Abhijeet Tiwari](https://bit.ly/abhijeettiwari)
