@@ -42,6 +42,7 @@
                 break
 `
 
-To view rest of the repository and complete information/downloading the files see here: [Facial_Expression_Recognition](https://github.com/abhijeettiwari2717/face_expression_recognition)
+
 
 See my Portfolio: [Abhijeet Tiwari](https://bit.ly/abhijeettiwari)
+To view rest of the repository and complete information/downloading the files see here: [Facial_Expression_Recognition](https://github.com/abhijeettiwari2717/face_expression_recognition)
