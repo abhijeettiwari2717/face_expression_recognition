@@ -1,37 +1,83 @@
-## Welcome to GitHub Pages
+## Welcome to Face_Expression_Recogntion
 
-You can use the [editor on GitHub](https://github.com/abhijeettiwari2717/face_expression_recognition/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
 ### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+There are three major files:
 
-# Header 1
-## Header 2
-### Header 3
+# Facial Expression Recognition
+## Using Python modules OpenCV, Tensorflow, Keras and layers of CNN
+### Created by: Abhijeet Tiwari
 
-- Bulleted
-- List
+### THERE ARE 3 FILES
+- Emotion_little_vgg.h5
+- Facial_Emotion_Recognition.py
+- haarcascade_frontalface_default.xml
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
+**Packages** 
+ _from keras.models import load_model
+from time import sleep
+from keras.preprocessing.image import img_to_array
+from keras.preprocessing import image
+import cv2
+import numpy as np
+import tensorflow
+import pkg_resources_
+
+
+`
+#complete path of your both the files.
+face_classifier=cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+classifier=load_model('Emotion_little_vgg.h5')
+
+class_labels = ['Angry','Happy','Neutral','Sad','Surprise']
+
+cap = cv2.VideoCapture(0)
+
+
+# Get a single frame of video
+while True:
+    
+    ret, frame = cap.read()
+    labels = []
+    gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
+    faces = face_classifier.detectMultiScale(gray,1.3,5)
+
+    for (x,y,w,h) in faces:
+        cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
+        roi_gray = gray[y:y+h,x:x+w]
+        roi_gray = cv2.resize(roi_gray,(48,48),interpolation=cv2.INTER_AREA)
+        
+
+        #rect,face,image = face_detector(frame)
+        if np.sum([roi_gray])!=0:
+            roi = roi_gray.astype('float')/255.0
+            roi = img_to_array(roi)
+            roi = np.expand_dims(roi,axis=0)
+
+        #make prediction on the ROI, then lookup the class
+
+            preds = classifier.predict(roi)[0]
+            label=class_labels[preds.argmax()]
+            label_position = (x,y)
+            cv2.putText(frame,label,label_position,cv2.FONT_HERSHEY_SIMPLEX,2,(0,255,0),3)
+        else:
+            cv2.putText(frame,'No Face Found',(20,60),cv2.FONT_HERSHEY_SIMPLEX,2,(0,255,0),3)
+    cv2.imshow('Emotion Detector',frame)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()
+© 2020` text
 
 [Link](url) and ![Image](src)
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/abhijeettiwari2717/face_expression_recognition/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
 
 Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
