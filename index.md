@@ -17,8 +17,7 @@ There are three major files:
 - Facial_Emotion_Recognition.py
 - haarcascade_frontalface_default.xml
 
-
-**Packages** 
+`
  _from keras.models import load_model
 from time import sleep
 from keras.preprocessing.image import img_to_array
@@ -27,9 +26,6 @@ import cv2
 import numpy as np
 import tensorflow
 import pkg_resources_
-
-
-`
 #complete path of your both the files.
 face_classifier=cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 classifier=load_model('Emotion_little_vgg.h5')
@@ -75,9 +71,6 @@ cap.release()
 cv2.destroyAllWindows()
 © 2020` text
 
-[Link](url) and ![Image](src)
 ```
-
-
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+For more information and downloading the files see here: [Facial_Expression_Recognition](https://github.com/abhijeettiwari2717/face_expression_recognition)
+See my Portfolio: [Abhijeet Tiwari](https://bit.ly/abhijeettiwari)
